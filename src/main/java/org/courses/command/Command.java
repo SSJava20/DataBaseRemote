@@ -7,6 +7,8 @@ public class Command
     static public final int ADD_PERSON = 1;
     static public final int UPDATE_PERSON = 2;
     static public final int DELETE_PERSON = 3;
+    static public final int PERSON_BY_ID = 4;
+    static public final int ALL_PERSONS = 5;
 
     private String data;
     private int comandType;
