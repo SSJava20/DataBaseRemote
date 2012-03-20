@@ -7,18 +7,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
-import org.courses.command.Command;
-import command.ClientCommand.Accept;
-import command.ClientCommand.Move;
-import command.ClientCommand.PlayerData;
-import command.ClientCommand.RequestGame;
-import command.ServerCommand.ResendRequestGame;
-import command.ServerCommand.SendGameState;
-import command.ServerCommand.SendPlayerList;
-import command.ServerCommand.SendPlayerMark;
+import org.courses.command.*;
+import org.courses.db.DAOFactory;
+import org.courses.db.Person;
 
 /**
  * @author Roman Kostyrko 02.03.2012 class provides communication with
@@ -64,46 +59,41 @@ public class ServerThread implements Runnable
      */
     private void requestNewGame(int id)
     {
-        Command command = new Command(new ResendRequestGame(id));
+//        Command command = new Command(new ResendRequestGame(id));
+//        String commandString = command.serialize();
+//        sendCommand(commandString);
+    }
+
+    private void AddPerson(Person toAdd) throws SQLException
+    {
+        DAOFactory.getInstance().getPersonDAO().addPerson(toAdd);
+    }
+
+    private void UpdatePerson(int id, Person toUpd) throws SQLException
+    {
+        DAOFactory.getInstance().getPersonDAO().updatePerson(id, toUpd);
+    }
+
+    private void DeletePerson(Person toDel) throws SQLException
+    {
+        DAOFactory.getInstance().getPersonDAO().deletePerson(toDel);
+    }
+
+    private void SendPersonById(int id) throws SQLException
+    {
+        Command command = new Command(new PersonByIdCommand(id, DAOFactory.getInstance().getPersonDAO().getPersonById(id)));
         String commandString = command.serialize();
         sendCommand(commandString);
     }
 
-    /**
-     * @param opponentServerThread void accepting new game request from opponent, creating game,
-     *                             and sending new game state to client
-     */
-    private void acceptGame(ServerThread opponentServerThread)
+    private void SendAllPersons() throws SQLException
     {
-        Game newgame = server.addNewGame(opponentServerThread, this);
-        this.setMyGame(newgame);
-        opponentServerThread.setMyGame(newgame);
-        this.sendPlayerMark();
-        opponentServerThread.sendPlayerMark();
+        Command command = new Command(new AllPersonsCommand(DAOFactory.getInstance().getPersonDAO().getAllPersons()));
+        String commandString = command.serialize();
+        sendCommand(commandString);
     }
 
-    private void sendPlayerList()
-    {
-        FreePlayer[] a = new FreePlayer[server.getFreeList(this).size()];
-        server.getFreeList(this).toArray(a);
-        Command command = new Command(new SendPlayerList(a));
-        sendCommand(command.serialize());
-    }
-
-    /**
-     * @param currentgamestate void sending state of game to player client of this game
-     */
-    public void sendGameState(GameState state)
-    {
-        Command command = new Command(new SendGameState(state));
-        sendCommand(command.serialize());
-    }
-
-    /**
-     * @param getcommand void Define type of received command from client and call
-     *                   processing methods
-     */
-    private void operateCommand(String getcommand)
+    private void operateCommand(String getcommand) throws SQLException
     {
         Gson gson = new Gson();
         Command command = Command.deserialize(getcommand);
@@ -112,65 +102,48 @@ public class ServerThread implements Runnable
                 + command.getType() + " " + command.getStringData());
         switch (command.getType())
         {
-            case Command.REQUEST_GAME:
+            case Command.ADD_PERSON:
             {
 
-                RequestGame requestgame = gson.fromJson(command.getStringData(),
-                        RequestGame.class);
-                requestNewGametoThread(requestgame.getCurId());
+                addPersonCommand apComm = gson.fromJson(command.getStringData(),
+                        addPersonCommand.class);
+                AddPerson(apComm.getPerson());
                 break;
             }
-            case Command.ACCEPT:
+            case Command.UPDATE_PERSON:
             {
-                Accept accept = gson
-                        .fromJson(command.getStringData(), Accept.class);
-                acceptGame(server.getServerThreadById(accept.getAcceptedplayerid()));
+
+                updatePersonCommand upComm = gson.fromJson(command.getStringData(),
+                        updatePersonCommand.class);
+                UpdatePerson(upComm.getIndex(), upComm.getPerson());
                 break;
             }
-            case Command.MOVE:
+            case Command.DELETE_PERSON:
             {
-                Move move = gson.fromJson(command.getStringData(), Move.class);
-                if (myGame != null)
-                {
-                    myGame.Move(this, new Point(move.getRow(), move.getCol()));
-                }
+
+                deletePersonCommand delComm = gson.fromJson(command.getStringData(),
+                        deletePersonCommand.class);
+                DeletePerson(delComm.getPerson());
                 break;
             }
-            case Command.GET_PLAYER_LIST:
+            case Command.PERSON_BY_ID:
             {
-                sendPlayerList();
+
+                PersonByIdCommand personByIdCommand = gson.fromJson(command.getStringData(),
+                        PersonByIdCommand.class);
+                SendPersonById(personByIdCommand.getIndex());
                 break;
             }
-            case Command.PLAYER_DATA:
+            case Command.ALL_PERSONS:
             {
-                PlayerData pdata = gson.fromJson(command.getStringData(),
-                        PlayerData.class);
-                this.setName(pdata.getName());
-                break;
-            }
-            case Command.CLOSE_GAME:
-            {
-                closeGame();
-                break;
-            }
-            case Command.SEND_PLAYER_MARK:
-            {
-                sendPlayerMark();
+
+                AllPersonsCommand allPersonsCommand = gson.fromJson(command.getStringData(),
+                        AllPersonsCommand.class);
+                SendAllPersons();
                 break;
             }
             default:
         }
-    }
-
-    private void closeGame()
-    {
-        myGame.Surrender(this);
-    }
-
-    private void sendPlayerMark()
-    {
-        Command command = new Command(new SendPlayerMark(this.getMark()));
-        sendCommand(command.serialize());
     }
 
     @Override
