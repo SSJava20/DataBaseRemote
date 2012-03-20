@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping    PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.courses.Person" table="Persons" lazy="false">
+		<id column="id" name="id" type="java.lang.Integer">
+			<generator class="increment" />
+		</id>
+		<property name="Name" column="Name" type="java.lang.String" />
+		<property name="SName" column="SurName" type="java.lang.String" />
+		<property name="fileName" column="FileName" type="text" />
+        <property name="birthDay" column="Birthday" type="date" />
+        <property name="Phone" column="Phone" type="text" />
+        <property name="Mail" column="Mail" type="text" />
+        <property name="imgName" column="Image" type="text" />
+        <property name="longString" column="Info" type="text"/>
+
+	</class>
+
+</hibernate-mapping>
