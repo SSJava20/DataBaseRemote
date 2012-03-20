@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping    PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="org.courses.Person" table="Persons" lazy="false">
+	<class name="org.courses.db.Person" table="Persons" lazy="false">
 		<id column="id" name="id" type="java.lang.Integer">
 			<generator class="increment" />
 		</id>

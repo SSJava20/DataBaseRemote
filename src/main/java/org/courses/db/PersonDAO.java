@@ -1,4 +1,4 @@
-package org.courses;
+package org.courses.db;
 
 import java.sql.SQLException;
 import java.util.Collection;

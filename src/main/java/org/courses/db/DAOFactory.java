@@ -1,4 +1,4 @@
-package org.courses;
+package org.courses.db;
 
 /**
  * Created by IntelliJ IDEA.

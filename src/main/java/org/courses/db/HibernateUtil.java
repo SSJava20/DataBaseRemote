@@ -1,4 +1,4 @@
-package org.courses;
+package org.courses.db;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

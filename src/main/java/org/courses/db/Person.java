@@ -1,4 +1,4 @@
-package org.courses;
+package org.courses.db;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
