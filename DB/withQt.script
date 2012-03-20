@@ -1,0 +1,79 @@
+SET DATABASE UNIQUE NAME HSQLDB35B5F553ED
+SET DATABASE GC 0
+SET DATABASE DEFAULT RESULT MEMORY ROWS 0
+SET DATABASE EVENT LOG LEVEL 0
+SET DATABASE SQL NAMES FALSE
+SET DATABASE SQL REFERENCES FALSE
+SET DATABASE SQL SIZE TRUE
+SET DATABASE SQL TYPES FALSE
+SET DATABASE SQL TDC DELETE TRUE
+SET DATABASE SQL TDC UPDATE TRUE
+SET DATABASE SQL TRANSLATE TTI TYPES TRUE
+SET DATABASE SQL CONCAT NULLS TRUE
+SET DATABASE SQL NULLS FIRST TRUE
+SET DATABASE SQL UNIQUE NULLS TRUE
+SET DATABASE SQL CONVERT TRUNCATE TRUE
+SET DATABASE SQL AVG SCALE 0
+SET DATABASE SQL DOUBLE NAN TRUE
+SET DATABASE SQL LONGVAR IS LOB FALSE
+SET DATABASE TRANSACTION CONTROL LOCKS
+SET DATABASE DEFAULT ISOLATION LEVEL READ COMMITTED
+SET DATABASE TRANSACTION ROLLBACK ON CONFLICT TRUE
+SET DATABASE TEXT TABLE DEFAULTS ''
+SET FILES WRITE DELAY 500 MILLIS
+SET FILES BACKUP INCREMENT TRUE
+SET FILES CACHE SIZE 10000
+SET FILES CACHE ROWS 50000
+SET FILES SCALE 8
+SET FILES LOB SCALE 32
+SET FILES DEFRAG 0
+SET FILES NIO TRUE
+SET FILES NIO SIZE 256
+SET FILES LOG TRUE
+SET FILES LOG SIZE 50
+CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
+ALTER USER SA SET LOCAL TRUE
+CREATE SCHEMA PUBLIC AUTHORIZATION DBA
+SET SCHEMA PUBLIC
+CREATE MEMORY TABLE PUBLIC.PERSONS(ID INTEGER NOT NULL PRIMARY KEY,NAME VARCHAR(255) NOT NULL,SURNAME VARCHAR(255) NOT NULL,FILENAME VARCHAR(16777216),BIRTHDAY DATE,PHONE VARCHAR(16777216),MAIL VARCHAR(16777216),IMAGE VARCHAR(16777216),INFO VARCHAR(16777216))
+ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
+SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.TIME_STAMP TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CARDINAL_NUMBER TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CHARACTER_DATA TO PUBLIC
+GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
+GRANT DBA TO SA
+SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+SET SCHEMA PUBLIC
+INSERT INTO PERSONS VALUES(1,'CDZIVR','NGGKXQ','file/lololo.txt','1970-01-11','8-132-237-46-51','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(2,'XQLXLN','WYFVHK','file/lololo.txt','1970-01-11','8-293-214-29-95','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(3,'BXLIGU','LYMXKS','file/lololo.txt','1970-01-11','8-255-364-39-67','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(4,'LHWYTU','TWQHMZ','file/lololo.txt','1970-01-11','8-730-680-38-32','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(5,'VMKJFG','DOQORD','file/lololo.txt','1970-01-11','8-361-946-97-22','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(6,'GWLRQZ','ASTYFE','file/lololo.txt','1970-01-11','8-174-446-53-62','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(7,'MGKIRV','JCTUZW','file/lololo.txt','1970-01-11','8-384-241-22-80','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(8,'JGWITI','DDZOGH','file/lololo.txt','1970-01-11','8-982-277-37-47','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(9,'LDDDPQ','SSSGBM','file/lololo.txt','1970-01-11','8-189-468-41-58','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(10,'MOPMCC','LJNORC','file/lololo.txt','1970-01-11','8-129-157-59-44','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(11,'PPIBTJ','ORHGRW','file/lololo.txt','1970-01-11','8-888-891-92-72','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(12,'OGRFIC','AZRMBX','file/lololo.txt','1970-01-11','8-730-992-84-65','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(13,'KBXUDI','GQFMQR','file/lololo.txt','1970-01-11','8-682-449-27-27','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(14,'MPRHUK','MSZCSA','file/lololo.txt','1970-01-11','8-908-555-11-96','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(15,'FNZOSO','EEMTDK','file/lololo.txt','1970-01-11','8-239-696-76-10','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(16,'PFNHCB','PSYZAR','file/lololo.txt','1970-01-11','8-421-906-87-53','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(17,'TZPPVS','QKQKHC','file/lololo.txt','1970-01-11','8-269-441-81-33','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(18,'NRJIZX','IQAJAL','file/lololo.txt','1970-01-11','8-107-881-53-10','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(19,'YBEJYK','NHWHPX','file/lololo.txt','1970-01-11','8-868-965-33-63','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(20,'IDWCTT','JCEEMP','file/lololo.txt','1970-01-11','8-358-343-11-39','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(21,'EWGMDU','DRRLAL','file/lololo.txt','1970-01-11','8-176-944-83-61','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(22,'DRSWPL','VBCXNF','file/lololo.txt','1970-01-11','8-280-276-51-14','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(23,'MZQCLS','YZLFSA','file/lololo.txt','1970-01-11','8-149-311-71-16','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(24,'ESWVMS','GLUMCN','file/lololo.txt','1970-01-11','8-230-855-30-65','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(25,'BAABMF','CWIZMN','file/lololo.txt','1970-01-11','8-513-705-64-29','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(26,'PVUOXR','AAZQRR','file/lololo.txt','1970-01-11','8-106-212-11-16','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(27,'DNHPPR','YKYBPM','file/lololo.txt','1970-01-11','8-574-648-66-29','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(28,'HYZTKM','AHSDXM','file/lololo.txt','1970-01-11','8-808-379-62-36','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(29,'ATKINZ','XUXSUN','file/lololo.txt','1970-01-11','8-514-587-20-22','default@mail.org','img/1.gif','some fstring very very long yaaaahh')
+INSERT INTO PERSONS VALUES(30,'TTAABY','AXEOLN','file/lololo.txt','1970-01-11','8-144-538-88-80','default@mail.org','img/1.gif','some fstring very very long yaaaahh')

@@ -15,10 +15,6 @@ import org.courses.command.*;
 import org.courses.db.DAOFactory;
 import org.courses.db.Person;
 
-/**
- * @author Roman Kostyrko 02.03.2012 class provides communication with
- *         ClientThread
- */
 public class ServerThread implements Runnable
 {
     private String name;
@@ -54,46 +50,36 @@ public class ServerThread implements Runnable
         }
     }
 
-    /**
-     * void
-     */
-    private void requestNewGame(int id)
+    private void AddPerson(Person toAdd) throws Exception
     {
-//        Command command = new Command(new ResendRequestGame(id));
-//        String commandString = command.serialize();
-//        sendCommand(commandString);
+        DAOFactory.getInstance().getPersonDAO('l').addPerson(toAdd);
     }
 
-    private void AddPerson(Person toAdd) throws SQLException
+    private void UpdatePerson(int id, Person toUpd) throws Exception
     {
-        DAOFactory.getInstance().getPersonDAO().addPerson(toAdd);
+        DAOFactory.getInstance().getPersonDAO('l').updatePerson(id, toUpd);
     }
 
-    private void UpdatePerson(int id, Person toUpd) throws SQLException
+    private void DeletePerson(Person toDel) throws Exception
     {
-        DAOFactory.getInstance().getPersonDAO().updatePerson(id, toUpd);
+        DAOFactory.getInstance().getPersonDAO('l').deletePerson(toDel);
     }
 
-    private void DeletePerson(Person toDel) throws SQLException
+    private void SendPersonById(int id) throws Exception
     {
-        DAOFactory.getInstance().getPersonDAO().deletePerson(toDel);
-    }
-
-    private void SendPersonById(int id) throws SQLException
-    {
-        Command command = new Command(new PersonByIdCommand(id, DAOFactory.getInstance().getPersonDAO().getPersonById(id)));
+        Command command = new Command(new PersonByIdCommand(id, DAOFactory.getInstance().getPersonDAO('l').getPersonById(id)));
         String commandString = command.serialize();
         sendCommand(commandString);
     }
 
-    private void SendAllPersons() throws SQLException
+    private void SendAllPersons() throws Exception
     {
-        Command command = new Command(new AllPersonsCommand(DAOFactory.getInstance().getPersonDAO().getAllPersons()));
+        Command command = new Command(new AllPersonsCommand(DAOFactory.getInstance().getPersonDAO('l').getAllPersons()));
         String commandString = command.serialize();
         sendCommand(commandString);
     }
 
-    private void operateCommand(String getcommand) throws SQLException
+    private void operateCommand(String getcommand) throws Exception
     {
         Gson gson = new Gson();
         Command command = Command.deserialize(getcommand);

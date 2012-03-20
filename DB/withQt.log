@@ -1,0 +1,3 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table Persons if exists
+create table Persons (id integer not null, Name varchar(255) not null, SurName varchar(255) not null, FileName longvarchar, Birthday date, Phone longvarchar, Mail longvarchar, Image longvarchar, Info longvarchar, primary key (id))
