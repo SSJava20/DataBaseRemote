@@ -1,23 +1,16 @@
 package org.courses.server;
 
 import java.awt.Point;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.Vector;
 
 import com.google.gson.Gson;
-import command.Command;
-import command.FreePlayer;
-import command.GameState;
+import org.courses.command.Command;
 import command.ClientCommand.Accept;
 import command.ClientCommand.Move;
 import command.ClientCommand.PlayerData;
